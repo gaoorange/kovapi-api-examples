@@ -3,7 +3,7 @@ name: examples check
 # Syntax-only: no network, no API key. Keeps every example runnable as the catalogue changes.
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
 
 jobs:

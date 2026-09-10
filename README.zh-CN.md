@@ -1,6 +1,6 @@
 # NezhaGate API 示例 — 一个 OpenAI 兼容接口调用 GPT / Claude / Gemini / 图像 / 视频模型
 
-[![examples check](https://github.com/leizhenfacai/nezhagate-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/leizhenfacai/nezhagate-api-examples/actions/workflows/ci.yml)
+[![examples check](https://github.com/gaoorange/nezhagate-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/gaoorange/nezhagate-api-examples/actions/workflows/ci.yml)
 [English README](README.md)
 
 > **[NezhaGate](https://nezhagate.com)** 是 OpenAI 兼容的 AI 模型网关：把 `base_url` 换成 `https://nezhagate.com/v1`，官方 `openai` SDK 一行业务代码不改，用一个接口、一把 Key 调用 GPT-5.6、GPT-5.5、Claude Opus 5、Gemini 3.8 Flash、图像模型（GPT Image 2、Nano Banana）与视频模型（Seedance、通义万相 3.0、MiniMax H3、Grok Imagine）。按量计费，**请求失败不扣费**，图像 / 视频任务失败全额退。

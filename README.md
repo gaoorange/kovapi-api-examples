@@ -1,6 +1,6 @@
 # NezhaGate API Examples — one OpenAI-compatible endpoint for GPT, Claude, Gemini, image and video models
 
-[![examples check](https://github.com/leizhenfacai/nezhagate-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/leizhenfacai/nezhagate-api-examples/actions/workflows/ci.yml)
+[![examples check](https://github.com/gaoorange/nezhagate-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/gaoorange/nezhagate-api-examples/actions/workflows/ci.yml)
 [中文说明 / Chinese README](README.zh-CN.md)
 
 > **[NezhaGate](https://nezhagate.com/en/)** is an OpenAI-compatible AI model gateway. Point `base_url` at `https://nezhagate.com/v1`, keep the official `openai` SDK, and call GPT-5.6, GPT-5.5, Claude Opus 5, Gemini 3.8 Flash, image models (GPT Image 2, Nano Banana) and video models (Seedance, Wan 3.0, MiniMax H3, Grok Imagine) through one endpoint and one API key. Pay-as-you-go; **failed requests are never billed**; video and image jobs that fail are refunded in full.
