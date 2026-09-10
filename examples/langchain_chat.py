@@ -1,19 +1,23 @@
-"""NezhaGate + LangChain — ChatOpenAI works as-is with a custom base_url.
+"""NezhaGate with LangChain -- ChatOpenAI with a custom base_url; every chat model works the same way.
 
     pip install langchain-openai
     export NEZHAGATE_API_KEY=sk-xxxx
-    python langchain_chat.py
-
-Same pattern works for n8n / Dify / Open WebUI / LobeChat / Cherry Studio / ChatBox:
-set the OpenAI-compatible Base URL to https://nezhagate.com/v1 and paste your key.
+    python examples/langchain_chat.py
 """
 import os
 
 from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
-    model="claude-sonnet-4-6",
+    model="gpt-5.6-terra",            # or claude-opus-5 / gemini-3.8-flash / claude-sonnet-4-6 ...
     api_key=os.environ["NEZHAGATE_API_KEY"],
     base_url="https://nezhagate.com/v1",
+    temperature=0.3,
 )
-print(llm.invoke("用一句话介绍你自己").content)
+
+print(llm.invoke("Give me three names for a cat cafe, one per line.").content)
+
+# streaming
+for chunk in llm.stream("Count from 1 to 5."):
+    print(chunk.content, end="", flush=True)
+print()
