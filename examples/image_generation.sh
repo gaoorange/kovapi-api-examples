@@ -12,7 +12,7 @@ JOB=$(curl -s "$BASE/images/generations" -H "$AUTH" -H "Content-Type: applicatio
 echo "submitted: $JOB"
 ID=$(printf '%s' "$JOB" | python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])')
 
-# 2) poll GET /v1/images/jobs/{id} until status=succeeded, then read data[0].url (a stable re-hosted link)
+# 2) poll GET /v1/images/jobs/{id} until status=succeeded, then read data[0].url (kept for 60 days -- download it)
 while :; do
   sleep 3
   R=$(curl -s "$BASE/images/jobs/$ID" -H "$AUTH")

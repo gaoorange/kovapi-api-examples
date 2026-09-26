@@ -23,7 +23,7 @@ let job = await (await fetch(`${BASE}/images/generations`, {
   method: "POST",
   headers: HEADERS,
   body: JSON.stringify({
-    model: "gpt-image-2",                        // or nano-banana-2 / nano-banana-pro
+    model: "gpt-image-2",                        // or gpt-image-2.5-flare / nano-banana-2 / nano-banana-pro
     prompt: "a serene ink-wash poster, lots of negative space",
     size: "3:4",
     resolution: "1K",
@@ -31,7 +31,7 @@ let job = await (await fetch(`${BASE}/images/generations`, {
 })).json();
 console.log("submitted:", job);
 let done = await waitFor(job.id);
-console.log(done.status === "succeeded" ? "image url: " + done.data[0].url : done);
+console.log(done.status === "succeeded" ? "image url: " + done.data[0].url : done); // kept for 60 days, download it
 
 // 2) image-to-image on /images/edits: the reference goes in `image`
 job = await (await fetch(`${BASE}/images/edits`, {

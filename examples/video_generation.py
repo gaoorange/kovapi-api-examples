@@ -6,9 +6,10 @@ One endpoint for every video model; the request body selects the mode:
                            multi-image reference or a reference video -- see the model page)
 Common fields: prompt, duration (seconds, integer), resolution (480P / 720P / 1080P per model), size (aspect ratio).
 
-Per-second models: seedance-2.5 (4-30 s), seedance-2.0 / -fast / -mini (5-15 s), wan3.0-video / -prime (2-30 s),
+Per-second models: seedance-2.5 (4-30 s), seedance-2.0 / -fast (5-15 s), wan3.0-video / -prime (2-30 s),
 minimax-h3 (5-15 s, 1080P, native audio). Per-clip models: grok-imagine-video-1.5 (4-15 s), seedance-2.5-30s (30 s).
 A failed or timed-out job is refunded in full. Clips take one to a few minutes; long clips longer.
+The mp4 stays on img.nezhagate.com for 60 days -- download what you want to keep.
 
     pip install requests
     export NEZHAGATE_API_KEY=sk-xxxx

@@ -12,18 +12,18 @@ curl -s "$BASE/chat/completions" \
   -H "Authorization: Bearer $NEZHAGATE_API_KEY" -H "Content-Type: application/json" \
   -d '{"model": "gpt-5.6-terra", "messages": [{"role": "user", "content": "Introduce yourself in one sentence."}]}' | say
 
-echo; echo "== 2) same request, Claude and Gemini -- only the model string changes =="
-for m in claude-opus-5 gemini-3.8-flash; do
+echo; echo "== 2) same request, Claude / Gemini / DeepSeek / Grok -- only the model string changes =="
+for m in claude-opus-5 gemini-3.8-flash deepseek-v4.1-flash grok-4.7; do
   printf '%s: ' "$m"
   curl -s "$BASE/chat/completions" \
     -H "Authorization: Bearer $NEZHAGATE_API_KEY" -H "Content-Type: application/json" \
     -d "{\"model\": \"$m\", \"messages\": [{\"role\": \"user\", \"content\": \"Say hi in five words.\"}]}" | say
 done
 
-echo; echo "== 3) reasoning effort (gpt-5.6 / gpt-5.5 / gemini-3.1-pro accept low|medium|high) =="
+echo; echo "== 3) reasoning effort (GPT, Claude and gemini-3.1-pro accept low|medium|high) =="
 curl -s "$BASE/chat/completions" \
   -H "Authorization: Bearer $NEZHAGATE_API_KEY" -H "Content-Type: application/json" \
-  -d '{"model": "gpt-5.6-sol", "reasoning_effort": "high", "messages": [{"role": "user", "content": "Is 1000003 prime? Answer yes or no, then explain briefly."}]}' | say
+  -d '{"model": "gpt-6-astra", "reasoning_effort": "high", "messages": [{"role": "user", "content": "Is 1000003 prime? Answer yes or no, then explain briefly."}]}' | say
 
 echo; echo "== 4) streaming (SSE) =="
 curl -sN "$BASE/chat/completions" \

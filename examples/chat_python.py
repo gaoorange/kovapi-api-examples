@@ -11,23 +11,34 @@ from openai import OpenAI
 client = OpenAI(api_key=os.environ["NEZHAGATE_API_KEY"], base_url="https://nezhagate.com/v1")
 
 # 1) basic chat -- switch models by changing one string:
-#    gpt-5.6-sol / gpt-5.6-terra / gpt-5.6-luna / gpt-5.5 / claude-opus-5 / claude-fable-5 /
-#    claude-sonnet-4-6 / gemini-3.1-pro / gemini-3.8-flash / gemini-3.6-flash ...
+#    gpt-6-astra / gpt-6-sol / gpt-6-luna / gpt-5.6-terra / gpt-5.5 / claude-opus-5 / claude-sonnet-4-6 /
+#    gemini-3.8-flash / gemini-3.1-pro / grok-4.7 / deepseek-v4.1-flash / glm-5.3 / kimi-k3 / qwen3.7-max ...
 resp = client.chat.completions.create(
     model="gpt-5.6-terra",
     messages=[{"role": "user", "content": "Introduce yourself in one sentence."}],
 )
 print(resp.choices[0].message.content)
 
-# 2) reasoning effort (GPT-5.x and gemini-3.1-pro): low / medium / high -- more thinking, more output tokens
+# 2) reasoning effort (GPT, Claude and gemini-3.1-pro): low / medium / high -- more thinking, more output tokens.
+#    Thinking models also return their reasoning in message.reasoning_content, separate from the answer.
 resp = client.chat.completions.create(
-    model="claude-opus-5",
+    model="gpt-6-astra",
     messages=[{"role": "user", "content": "Is 1000003 prime? Answer yes or no, then explain briefly."}],
     extra_body={"reasoning_effort": "high"},
 )
+msg = resp.choices[0].message
+print("reasoning:", getattr(msg, "reasoning_content", None))
+print("answer:", msg.content)
+
+# 3) DeepSeek thinks by default; switch it off for a faster, cheaper direct answer
+resp = client.chat.completions.create(
+    model="deepseek-v4.1-flash",
+    messages=[{"role": "user", "content": "Translate 'good morning' into French, Japanese and Korean."}],
+    extra_body={"thinking": {"type": "disabled"}},
+)
 print(resp.choices[0].message.content)
 
-# 3) streaming
+# 4) streaming
 stream = client.chat.completions.create(
     model="gemini-3.8-flash",
     messages=[{"role": "user", "content": "Count from 1 to 5."}],
@@ -37,7 +48,7 @@ for chunk in stream:
     print(chunk.choices[0].delta.content or "", end="", flush=True)
 print()
 
-# 4) vision input (any model that accepts images: claude-opus-5, gemini-3.x, gpt-5.x)
+# 5) vision input -- a public image URL is fine here; for GPT models send the image as a base64 data: URI
 resp = client.chat.completions.create(
     model="gemini-3.8-flash",
     messages=[{"role": "user", "content": [

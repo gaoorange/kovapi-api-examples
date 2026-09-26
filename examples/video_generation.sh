@@ -13,7 +13,7 @@ JOB=$(curl -s "$BASE/videos/generations" -H "$AUTH" -H "Content-Type: applicatio
 echo "submitted: $JOB"
 ID=$(printf '%s' "$JOB" | python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])')
 
-# 2) poll every ~5 s until status=succeeded, then read data[0].url (a stable re-hosted mp4 link)
+# 2) poll every ~5 s until status=succeeded, then read data[0].url (an mp4 kept for 60 days -- download it)
 while :; do
   sleep 5
   R=$(curl -s "$BASE/videos/jobs/$ID" -H "$AUTH")

@@ -39,7 +39,7 @@ console.log(done.status === "succeeded" ? "video url: " + done.data[0].url : don
 
 // 2) image-to-video: add `image`, the picture becomes the first frame
 id = await submit({
-  model: "minimax-h3", // 1080P with native audio; or wan3.0-video / seedance-2.0 / grok-imagine-video-1.5
+  model: "minimax-h3", // 1080P with native audio, $0.036/s; or wan3.0-video / seedance-2.0 / grok-imagine-video-1.5
   prompt: "the logo slowly rotates while soft light sweeps across it",
   image: "https://nezhagate.com/static/img/logo-mark.png",
   duration: 5,
