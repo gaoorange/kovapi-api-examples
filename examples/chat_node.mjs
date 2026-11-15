@@ -1,12 +1,12 @@
-// NezhaGate chat with the official OpenAI Node SDK -- only baseURL and apiKey change.
+// KovAPI chat with the official OpenAI Node SDK -- only baseURL and apiKey change.
 //   npm i openai
-//   export NEZHAGATE_API_KEY=sk-xxxx
+//   export KOVAPI_API_KEY=sk-xxxx
 //   node examples/chat_node.mjs
 import OpenAI from "openai";
 
 const client = new OpenAI({
-  apiKey: process.env.NEZHAGATE_API_KEY,
-  baseURL: "https://nezhagate.com/v1",
+  apiKey: process.env.KOVAPI_API_KEY ?? process.env.NEZHAGATE_API_KEY,
+  baseURL: "https://kovapi.com/v1",
 });
 
 // 1) basic chat -- switch models by changing one string

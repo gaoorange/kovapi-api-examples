@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# NezhaGate video generation with curl -- async job: submit -> poll -> mp4 url.
-#   export NEZHAGATE_API_KEY=sk-xxxx && bash examples/video_generation.sh
+# KovAPI video generation with curl -- async job: submit -> poll -> mp4 url.
+#   export KOVAPI_API_KEY=sk-xxxx && bash examples/video_generation.sh
 set -euo pipefail
-BASE="https://nezhagate.com/v1"
-: "${NEZHAGATE_API_KEY:?export NEZHAGATE_API_KEY first}"
-AUTH="Authorization: Bearer $NEZHAGATE_API_KEY"
+BASE="https://kovapi.com/v1"
+KOVAPI_API_KEY="${KOVAPI_API_KEY:-${NEZHAGATE_API_KEY:-}}"   # NEZHAGATE_API_KEY, the old name, still works
+: "${KOVAPI_API_KEY:?export KOVAPI_API_KEY first}"
+AUTH="Authorization: Bearer $KOVAPI_API_KEY"
 
 # 1) submit -> HTTP 202 {"id":"...","object":"video.generation.job","status":"queued"}
 #    text-to-video; add  "image": "https://example.com/first-frame.png"  for image-to-video

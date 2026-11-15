@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# NezhaGate image generation with curl -- async job: submit -> poll -> url.
-#   export NEZHAGATE_API_KEY=sk-xxxx && bash examples/image_generation.sh
+# KovAPI image generation with curl -- async job: submit -> poll -> url.
+#   export KOVAPI_API_KEY=sk-xxxx && bash examples/image_generation.sh
 set -euo pipefail
-BASE="https://nezhagate.com/v1"
-: "${NEZHAGATE_API_KEY:?export NEZHAGATE_API_KEY first}"
-AUTH="Authorization: Bearer $NEZHAGATE_API_KEY"
+BASE="https://kovapi.com/v1"
+KOVAPI_API_KEY="${KOVAPI_API_KEY:-${NEZHAGATE_API_KEY:-}}"   # NEZHAGATE_API_KEY, the old name, still works
+: "${KOVAPI_API_KEY:?export KOVAPI_API_KEY first}"
+AUTH="Authorization: Bearer $KOVAPI_API_KEY"
 
 # 1) submit -> HTTP 202 {"id":"img_...","object":"image.generation.job","status":"queued"}
 JOB=$(curl -s "$BASE/images/generations" -H "$AUTH" -H "Content-Type: application/json" \

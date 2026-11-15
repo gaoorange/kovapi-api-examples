@@ -1,6 +1,11 @@
-# Changelog — NezhaGate model catalogue and this repo
+# Changelog — KovAPI (formerly NezhaGate) model catalogue and this repo
 
-Dates are the day a change went live on [nezhagate.com](https://nezhagate.com/en/). Prices in the README are a snapshot; the [pricing page](https://nezhagate.com/en/pricing) is authoritative.
+Dates are the day a change went live on [kovapi.com](https://kovapi.com/en/). Prices in the README are a snapshot; the [pricing page](https://kovapi.com/en/pricing) is authoritative.
+
+## 2026-11-15
+
+- Renamed: NezhaGate is now KovAPI (since 2026-10-31) and this repo moved from `nezhagate-api-examples` to `kovapi-api-examples` (the old URL redirects). The examples call `https://kovapi.com/v1` and read `KOVAPI_API_KEY`; `NEZHAGATE_API_KEY` is still read when the new name is not set, and the `nezhagate.com` API address keeps working.
+- Site: generated images and videos, and uploaded reference files, are kept for **7 days** (since 2026-10-29). Download results you want to keep.
 
 ## 2026-09-26
 

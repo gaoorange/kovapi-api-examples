@@ -1,9 +1,9 @@
-// NezhaGate video generation in Node.js -- async job: submit -> poll -> mp4 url (plain fetch, no SDK).
-//   export NEZHAGATE_API_KEY=sk-xxxx
+// KovAPI video generation in Node.js -- async job: submit -> poll -> mp4 url (plain fetch, no SDK).
+//   export KOVAPI_API_KEY=sk-xxxx
 //   node examples/video_generation.mjs
-const BASE = "https://nezhagate.com/v1";
+const BASE = "https://kovapi.com/v1";
 const HEADERS = {
-  Authorization: "Bearer " + process.env.NEZHAGATE_API_KEY,
+  Authorization: "Bearer " + (process.env.KOVAPI_API_KEY ?? process.env.NEZHAGATE_API_KEY),
   "Content-Type": "application/json",
 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -41,7 +41,7 @@ console.log(done.status === "succeeded" ? "video url: " + done.data[0].url : don
 id = await submit({
   model: "minimax-h3", // 1080P with native audio, $0.036/s; or wan3.0-video / seedance-2.0 / grok-imagine-video-1.5
   prompt: "the logo slowly rotates while soft light sweeps across it",
-  image: "https://nezhagate.com/static/img/logo-mark.png",
+  image: "https://kovapi.com/static/img/logo-mark.png",
   duration: 5,
   resolution: "1080P",
   size: "1:1",

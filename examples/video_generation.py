@@ -1,4 +1,4 @@
-"""NezhaGate video generation -- async job: submit -> poll -> mp4 url. The part most people get wrong.
+"""KovAPI video generation -- async job: submit -> poll -> mp4 url. The part most people get wrong.
 
 One endpoint for every video model; the request body selects the mode:
   - no `image`          -> text-to-video
@@ -9,10 +9,10 @@ Common fields: prompt, duration (seconds, integer), resolution (480P / 720P / 10
 Per-second models: seedance-2.5 (4-30 s), seedance-2.0 / -fast (5-15 s), wan3.0-video / -prime (2-30 s),
 minimax-h3 (5-15 s, 1080P, native audio). Per-clip models: grok-imagine-video-1.5 (4-15 s), seedance-2.5-30s (30 s).
 A failed or timed-out job is refunded in full. Clips take one to a few minutes; long clips longer.
-The mp4 stays on img.nezhagate.com for 60 days -- download what you want to keep.
+The mp4 stays on img.kovapi.com for 60 days -- download what you want to keep.
 
     pip install requests
-    export NEZHAGATE_API_KEY=sk-xxxx
+    export KOVAPI_API_KEY=sk-xxxx
     python examples/video_generation.py
 """
 import os
@@ -20,8 +20,12 @@ import time
 
 import requests
 
-BASE = "https://nezhagate.com/v1"
-HEADERS = {"Authorization": "Bearer " + os.environ["NEZHAGATE_API_KEY"], "Content-Type": "application/json"}
+API_KEY = os.environ.get("KOVAPI_API_KEY") or os.environ.get("NEZHAGATE_API_KEY")  # the old name still works
+if not API_KEY:
+    raise SystemExit("export KOVAPI_API_KEY=sk-... first (create a key at https://kovapi.com/keys)")
+
+BASE = "https://kovapi.com/v1"
+HEADERS = {"Authorization": "Bearer " + API_KEY, "Content-Type": "application/json"}
 
 
 def submit(body: dict) -> str:
@@ -58,7 +62,7 @@ print("video url:", done["data"][0]["url"] if done["status"] == "succeeded" else
 job_id = submit({
     "model": "wan3.0-video",                     # or minimax-h3 / seedance-2.0 / grok-imagine-video-1.5 ...
     "prompt": "the logo slowly rotates while soft light sweeps across it",
-    "image": "https://nezhagate.com/static/img/logo-mark.png",
+    "image": "https://kovapi.com/static/img/logo-mark.png",
     "duration": 5,
     "resolution": "720P",
     "size": "1:1",

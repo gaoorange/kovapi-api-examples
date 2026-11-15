@@ -4,14 +4,18 @@ Same key and base_url as chat. For a reasoning model, `reasoning` sets the effor
 the thinking, which comes back as a `reasoning` item in `output`, separate from the answer.
 
     pip install openai
-    export NEZHAGATE_API_KEY=sk-xxxx
+    export KOVAPI_API_KEY=sk-xxxx
     python examples/responses_api.py
 """
 import os
 
 from openai import OpenAI
 
-client = OpenAI(api_key=os.environ["NEZHAGATE_API_KEY"], base_url="https://nezhagate.com/v1")
+API_KEY = os.environ.get("KOVAPI_API_KEY") or os.environ.get("NEZHAGATE_API_KEY")  # the old name still works
+if not API_KEY:
+    raise SystemExit("export KOVAPI_API_KEY=sk-... first (create a key at https://kovapi.com/keys)")
+
+client = OpenAI(api_key=API_KEY, base_url="https://kovapi.com/v1")
 
 resp = client.responses.create(
     model="gpt-6-astra",                        # or gpt-6-sol / gpt-5.6-terra / gemini-3.8-flash ...

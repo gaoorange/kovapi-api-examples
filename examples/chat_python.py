@@ -1,14 +1,18 @@
-"""NezhaGate chat with the official OpenAI SDK -- only base_url and api_key change.
+"""KovAPI chat with the official OpenAI SDK -- only base_url and api_key change.
 
     pip install openai
-    export NEZHAGATE_API_KEY=sk-xxxx
+    export KOVAPI_API_KEY=sk-xxxx
     python examples/chat_python.py
 """
 import os
 
 from openai import OpenAI
 
-client = OpenAI(api_key=os.environ["NEZHAGATE_API_KEY"], base_url="https://nezhagate.com/v1")
+API_KEY = os.environ.get("KOVAPI_API_KEY") or os.environ.get("NEZHAGATE_API_KEY")  # the old name still works
+if not API_KEY:
+    raise SystemExit("export KOVAPI_API_KEY=sk-... first (create a key at https://kovapi.com/keys)")
+
+client = OpenAI(api_key=API_KEY, base_url="https://kovapi.com/v1")
 
 # 1) basic chat -- switch models by changing one string:
 #    gpt-6-astra / gpt-6-sol / gpt-6-luna / gpt-5.6-terra / gpt-5.5 / claude-opus-5 / claude-sonnet-4-6 /
@@ -53,7 +57,7 @@ resp = client.chat.completions.create(
     model="gemini-3.8-flash",
     messages=[{"role": "user", "content": [
         {"type": "text", "text": "What is in this picture?"},
-        {"type": "image_url", "image_url": {"url": "https://nezhagate.com/static/img/logo-mark.png"}},
+        {"type": "image_url", "image_url": {"url": "https://kovapi.com/static/img/logo-mark.png"}},
     ]}],
 )
 print(resp.choices[0].message.content)

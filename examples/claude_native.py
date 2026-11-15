@@ -1,11 +1,11 @@
 """Claude through the native Anthropic Messages API -- the same thing Claude Code does with two env vars:
 
-    export ANTHROPIC_BASE_URL=https://nezhagate.com/anthropic
-    export ANTHROPIC_API_KEY=$NEZHAGATE_API_KEY
+    export ANTHROPIC_BASE_URL=https://kovapi.com/anthropic
+    export ANTHROPIC_API_KEY=$KOVAPI_API_KEY
 
 With the SDK:
     pip install anthropic
-    export NEZHAGATE_API_KEY=sk-xxxx
+    export KOVAPI_API_KEY=sk-xxxx
     python examples/claude_native.py
 
 Models: claude-opus-5 / claude-fable-5 / claude-sonnet-4-6. max_tokens is required by the Messages API.
@@ -14,9 +14,13 @@ import os
 
 import anthropic
 
+API_KEY = os.environ.get("KOVAPI_API_KEY") or os.environ.get("NEZHAGATE_API_KEY")  # the old name still works
+if not API_KEY:
+    raise SystemExit("export KOVAPI_API_KEY=sk-... first (create a key at https://kovapi.com/keys)")
+
 client = anthropic.Anthropic(
-    api_key=os.environ["NEZHAGATE_API_KEY"],
-    base_url="https://nezhagate.com/anthropic",
+    api_key=API_KEY,
+    base_url="https://kovapi.com/anthropic",
 )
 
 msg = client.messages.create(

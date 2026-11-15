@@ -1,9 +1,9 @@
-// NezhaGate image generation in Node.js -- async job: submit -> poll -> url (no SDK needed, plain fetch).
-//   export NEZHAGATE_API_KEY=sk-xxxx
+// KovAPI image generation in Node.js -- async job: submit -> poll -> url (no SDK needed, plain fetch).
+//   export KOVAPI_API_KEY=sk-xxxx
 //   node examples/image_generation.mjs
-const BASE = "https://nezhagate.com/v1";
+const BASE = "https://kovapi.com/v1";
 const HEADERS = {
-  Authorization: "Bearer " + process.env.NEZHAGATE_API_KEY,
+  Authorization: "Bearer " + (process.env.KOVAPI_API_KEY ?? process.env.NEZHAGATE_API_KEY),
   "Content-Type": "application/json",
 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -40,7 +40,7 @@ job = await (await fetch(`${BASE}/images/edits`, {
   body: JSON.stringify({
     model: "nano-banana-pro",
     prompt: "replace the background with a starry sky",
-    image: "https://nezhagate.com/static/img/logo-mark.png",
+    image: "https://kovapi.com/static/img/logo-mark.png",
     size: "1:1",
   }),
 })).json();

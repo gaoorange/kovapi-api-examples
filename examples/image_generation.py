@@ -1,13 +1,13 @@
-"""NezhaGate image generation -- async job: submit -> poll -> url.
+"""KovAPI image generation -- async job: submit -> poll -> url.
 
 Text-to-image needs only `prompt`. Image-to-image: POST /images/edits with `image` (a public URL, a data: URI or
 raw base64) and a prompt; `images` takes several references. `size` accepts aspect ratios (1:1, 3:4, 2:3, 9:16, 4:3,
 3:2, 16:9) or pixel sizes such as 1024x1024 / 1024x1536; `resolution` is 1K (default), 2K or 4K.
 Models: gpt-image-2 / gpt-image-2.5-flare / gpt-image-2.5-sunburst / nano-banana-2 / nano-banana-pro.
-Failed jobs are never billed. Results stay on img.nezhagate.com for 60 days -- download what you want to keep.
+Failed jobs are never billed. Results stay on img.kovapi.com for 60 days -- download what you want to keep.
 
     pip install requests
-    export NEZHAGATE_API_KEY=sk-xxxx
+    export KOVAPI_API_KEY=sk-xxxx
     python examples/image_generation.py
 """
 import os
@@ -15,8 +15,12 @@ import time
 
 import requests
 
-BASE = "https://nezhagate.com/v1"
-HEADERS = {"Authorization": "Bearer " + os.environ["NEZHAGATE_API_KEY"], "Content-Type": "application/json"}
+API_KEY = os.environ.get("KOVAPI_API_KEY") or os.environ.get("NEZHAGATE_API_KEY")  # the old name still works
+if not API_KEY:
+    raise SystemExit("export KOVAPI_API_KEY=sk-... first (create a key at https://kovapi.com/keys)")
+
+BASE = "https://kovapi.com/v1"
+HEADERS = {"Authorization": "Bearer " + API_KEY, "Content-Type": "application/json"}
 
 
 def wait_for(job_id: str) -> dict:
@@ -47,7 +51,7 @@ else:
 job = requests.post(f"{BASE}/images/edits", headers=HEADERS, json={
     "model": "nano-banana-pro",
     "prompt": "replace the background with a starry sky",
-    "image": "https://nezhagate.com/static/img/logo-mark.png",
+    "image": "https://kovapi.com/static/img/logo-mark.png",
     "size": "1:1",
 }, timeout=60).json()
 print("submitted:", job)
