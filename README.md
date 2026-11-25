@@ -1,6 +1,7 @@
 # KovAPI API Examples — one OpenAI-compatible endpoint for GPT, Claude, Gemini, Grok, DeepSeek, Kimi, GLM, Qwen, image and video models
 
 [![examples check](https://github.com/gaoorange/kovapi-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/gaoorange/kovapi-api-examples/actions/workflows/ci.yml)
+[![DevHunt](https://img.shields.io/badge/DevHunt-KovAPI-orange)](https://devhunt.org/tool/kovapi)
 [中文说明 / Chinese README](README.zh-CN.md)
 
 > KovAPI is the new name of NezhaGate (since 2026-10-31). API keys, balances and the `nezhagate.com` API address keep working, and `NEZHAGATE_API_KEY` is still read when `KOVAPI_API_KEY` is not set.
