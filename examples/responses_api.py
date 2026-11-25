@@ -18,7 +18,7 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url="https://kovapi.com/v1")
 
 resp = client.responses.create(
-    model="gpt-6-astra",                        # or gpt-6-sol / gpt-5.6-terra / gemini-3.8-flash ...
+    model="gpt-6-astra",                        # or gpt-6.1-sol / gpt-6-sol / gpt-5.6-luna ...
     input="Is 1000003 prime? Answer yes or no, then explain briefly.",
     reasoning={"effort": "medium", "summary": "auto"},
 )

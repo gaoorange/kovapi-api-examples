@@ -15,15 +15,15 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url="https://kovapi.com/v1")
 
 # 1) basic chat -- switch models by changing one string:
-#    gpt-6-astra / gpt-6-sol / gpt-6-luna / gpt-5.6-terra / gpt-5.5 / claude-opus-5 / claude-sonnet-4-6 /
-#    gemini-3.8-flash / gemini-3.1-pro / grok-4.7 / deepseek-v4.1-flash / glm-5.3 / kimi-k3 / qwen3.7-max ...
+#    gpt-6-astra / gpt-6.1-sol / gpt-6-sol / gpt-5.6-luna / claude-sonnet-4-6 / claude-opus-5-5 /
+#    gemini-3.8-flash / grok-4.7 / deepseek-v4.1-flash ... (full list: https://kovapi.com/market)
 resp = client.chat.completions.create(
-    model="gpt-5.6-terra",
+    model="gpt-5.6-luna",
     messages=[{"role": "user", "content": "Introduce yourself in one sentence."}],
 )
 print(resp.choices[0].message.content)
 
-# 2) reasoning effort (GPT, Claude and gemini-3.1-pro): low / medium / high -- more thinking, more output tokens.
+# 2) reasoning effort (GPT models; other models: see their docs page): low / medium / high -- more thinking, more output tokens.
 #    Thinking models also return their reasoning in message.reasoning_content, separate from the answer.
 resp = client.chat.completions.create(
     model="gpt-6-astra",

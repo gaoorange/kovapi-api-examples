@@ -13,7 +13,7 @@ if not API_KEY:
     raise SystemExit("export KOVAPI_API_KEY=sk-... first (create a key at https://kovapi.com/keys)")
 
 llm = ChatOpenAI(
-    model="gpt-5.6-terra",            # or claude-opus-5 / gemini-3.8-flash / deepseek-v4.1-flash / grok-4.7 ...
+    model="gpt-5.6-luna",             # or claude-sonnet-4-6 / gemini-3.8-flash / deepseek-v4.1-flash / grok-4.7 ...
     api_key=API_KEY,
     base_url="https://kovapi.com/v1",
     # GPT models ignore temperature / top_p / max_tokens (no error); each model page lists what it accepts

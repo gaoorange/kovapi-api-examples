@@ -1,6 +1,13 @@
 # Changelog — KovAPI (formerly NezhaGate) model catalogue and this repo
 
-Dates are the day a change went live on [kovapi.com](https://kovapi.com/en/). Prices in the README are a snapshot; the [pricing page](https://kovapi.com/en/pricing) is authoritative.
+Dates are the day a change went live on [kovapi.com](https://kovapi.com/). Since 2026-11-25 the README lists model ids without prices; live prices are on the [pricing page](https://kovapi.com/pricing).
+
+## 2026-11-25
+
+- README refreshed: the 2026-09-26 price snapshot is gone (prices change too often to copy); the README now lists current model ids for chat, image and video with links to their pages, live prices and the price comparison at kovapi.com/compare.
+- The examples now default to `gpt-5.6-luna` (`gpt-5.6-terra` is retired); the streaming curl example uses `gemini-3.8-flash`.
+- Retired since the last snapshot, among others: `gpt-5.6-terra`, `gpt-5.5`, `gemini-3.1-pro`, `gemini-3.6-flash` / `3.7-flash`, `gemini-3-flash-preview`, `gemini-2.5-flash`, `glm-5.3-flash`, `kimi-k3`, `qwen3.7-max`. Retired ids return HTTP 400 `model_disabled`.
+- Links point at the English site root (kovapi.com) and the Chinese pages under kovapi.com/zh/ (the site moved English to the root on 2026-11-21).
 
 ## 2026-11-15
 

@@ -10,9 +10,9 @@ const client = new OpenAI({
 });
 
 // 1) basic chat -- switch models by changing one string
-//    (gpt-6-astra / claude-opus-5 / gemini-3.8-flash / grok-4.7 / deepseek-v4.1-flash / kimi-k3 / qwen3.7-max ...)
+//    (gpt-6-astra / claude-sonnet-4-6 / gemini-3.8-flash / grok-4.7 / deepseek-v4.1-flash ...)
 const res = await client.chat.completions.create({
-  model: "gpt-5.6-terra",
+  model: "gpt-5.6-luna",
   messages: [{ role: "user", content: "Introduce yourself in one sentence." }],
 });
 console.log(res.choices[0].message.content);
