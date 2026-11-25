@@ -1,6 +1,7 @@
 # KovAPI API 示例 — 一个 OpenAI 兼容接口调用 GPT / Claude / Gemini / Grok / DeepSeek / Kimi / GLM / Qwen / 图像 / 视频模型
 
 [![examples check](https://github.com/gaoorange/kovapi-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/gaoorange/kovapi-api-examples/actions/workflows/ci.yml)
+[![DevHunt](https://img.shields.io/badge/DevHunt-KovAPI-orange)](https://devhunt.org/tool/kovapi)
 [English README](README.md)
 
 > KovAPI 是 NezhaGate 的新名字（2026-10-31 起）。原来的 API Key、余额和 `nezhagate.com` 的 API 地址都照常可用；没设 `KOVAPI_API_KEY` 时仍会读取 `NEZHAGATE_API_KEY`。
